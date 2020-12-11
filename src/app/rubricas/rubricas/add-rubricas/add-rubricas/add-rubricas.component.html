@@ -1,0 +1,99 @@
+
+
+
+<div class="container center">
+    <div class="card" style="width: 18rem;">
+      <form #tipoForm="ngForm" (ngSubmit)="addRubrica(tipoForm)">   
+      <div class="card-body">         
+        <input type="hidden" name="py_carga_id" [(ngModel)]="py_carga_id" /> 
+        <label for="inputState">Seleccione Curso</label>
+        <select
+        (change)="ChooseCurso($event.target.value)"
+        class="form-control"
+        id="inputState"
+        class="form-control"
+  
+          id="inputState"
+          class="form-control"
+        >
+          <option selected>Elegir...</option>
+          <option *ngFor="let curso of Rubrica.curso" [value] = "curso.py_carga_id">  {{ curso.curso }} </option>
+        </select>
+      </div>
+      <br>
+      <input
+      type="text"
+      matInput
+      id="ng"
+      placeholder="Ingrese Peso"
+      name="peso"
+       class="form-control"
+       [(ngModel)]="Rubrica.selectedRubri.peso" class="form-control"
+    />
+      
+   <button mat-raised-button color="primary" class="btn btn-primary upeu" >
+    Guardar
+  </button>
+</form>
+    </div>
+
+
+    
+  
+
+  
+  <br>
+  
+    <div class="col s5">
+        <table class="table">
+          <thead class="upeu">
+            <th class="white">N°</th>
+            <th class="white">Curso</th>
+            <th class="white">peso</th>
+            <th class="white">Registrar Criterios</th>
+            <th>Vista Administrativa</th>
+            <th class="white">Eliminar</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rubrica of Rubrica.rubrica; let indice = index">
+              <td>{{ indice + 1 }}</td>
+              <td>{{ rubrica.curso }}</td>
+              <td>{{ rubrica.peso }} %</td>
+              <td *ngIf = "estado == 1" >Activo</td>
+  
+              <td>
+                <a [routerLink]="['/rubricas/indicador/', rubrica.rubrica_id]" >
+                  <a  class="btn btn-primary">Registrar Criterios</a>
+                
+                </a>
+                <a>
+                <a mat-raised-button color="primary"  [routerLink] ="['/rubricas/vista/admin', rubrica.py_id, rubrica.py_carga_id]" class="btn btn-primary upeu" >
+                  Vista Administrativa
+                </a>
+              </a>
+              </td>
+              <td>
+                <a (click)="deleteTipo(i.ID_TIPO_UNIDAD)">
+                  <mat-icon color="primary"> <i class="fa fa-trash" aria-hidden="true"></i>
+                    </mat-icon>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+  
+    
+     
+    
+  
+  
+  </div>
+  
+  
+        
+       
+  
+  
+    
+  

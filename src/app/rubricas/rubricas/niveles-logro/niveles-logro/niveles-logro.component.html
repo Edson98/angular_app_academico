@@ -1,0 +1,67 @@
+<p>niveles-logro works!</p>
+<div class="container center">
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <label for="inputState">Información Del Criterio</label>
+        <div *ngFor="let criterio of infoCriterio">
+          <p>{{ criterio.nombre }}</p>
+          <p>peso {{ criterio.peso }} %</p>
+        </div>
+      </div>
+    </div>
+    <form >   
+   <br>
+   <div class="card-body">         
+    <label for="inputState">Seleccione Nivel</label>
+    <select
+    class="form-control"
+    id="inputState"
+    class="form-control"
+
+      id="inputState"
+      class="form-control"
+    >
+      <option selected>Elegir...</option>
+      <option *ngFor="let nivel of Rubrica.niveles" [value] = "nivel">  {{ nivel.nombre }} {{nivel.peso}} </option>
+    </select>
+  </div>
+ 
+  
+   <button mat-raised-button color="primary" class="btn btn-primary upeu" >
+    Guardar
+  </button>
+  </form>
+  
+  
+    <div class="col s5">
+      <table class="table">
+        <thead class="upeu">
+          <th class="white">N°</th>
+          <th class="white">Nombre</th>
+          <th class="white">peso</th>
+          <th class="white">Descripción</th>
+
+          <th class="white">Eliminar</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let niveles of nivel; let indice = index">
+            <td>{{ indice + 1 }}</td>
+            <td>{{ niveles.nombre }}</td>
+            <td>{{ niveles.peso }} </td>
+            <td>{{ niveles.descripcion}} </td>
+            <td *ngIf="estado == 1">Activo</td>
+  
+    
+            <td>
+              <a (click)="deleteTipo(i.ID_TIPO_UNIDAD)">
+                <mat-icon color="primary">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </mat-icon>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

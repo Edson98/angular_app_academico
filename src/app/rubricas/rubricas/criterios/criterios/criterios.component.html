@@ -1,0 +1,74 @@
+<p>criterios works!</p>
+
+<div class="container center">
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <label for="inputState">Información De la Rubrica</label>
+      <div *ngFor="let rubrica of rubrica">
+        <p>{{ rubrica.curso }}</p>
+        <p>{{ rubrica.peso }} %</p>
+      </div>
+    </div>
+  </div>
+  <form #tipoForm="ngForm" (ngSubmit)="addCriterio(tipoForm)">   
+ <br>
+ <input type="hidden" name="rubrica_id" [(ngModel)]="id" /> 
+    <input
+    type="text"
+    matInput
+    id="ng"
+    placeholder="Indicador"
+    name="nombre"
+     class="form-control"
+     [(ngModel)]="Rubrica.selectedCriterio.nombre" class="form-control"
+  />
+<br>
+  <input
+    type="text"
+    matInput
+    id="ng"
+    placeholder="Peso"
+    name="peso"
+     class="form-control"
+     [(ngModel)]="Rubrica.selectedCriterio.peso" class="form-control"
+  />
+
+ <button mat-raised-button color="primary" class="btn btn-primary upeu" >
+  Guardar
+</button>
+</form>
+
+
+  <div class="col s5">
+    <table class="table">
+      <thead class="upeu">
+        <th class="white">N°</th>
+        <th class="white">Curso</th>
+        <th class="white">peso</th>
+        <th class="white">Registrar Criterios</th>
+        <th class="white">Eliminar</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let criterio of Rubrica.criterio; let indice = index">
+          <td>{{ indice + 1 }}</td>
+          <td>{{ criterio.nombre }}</td>
+          <td>{{ criterio.peso }} %</td>
+          <td *ngIf="estado == 1">Activo</td>
+
+          <td>
+            <a [routerLink]="['/rubricas/indicador/nivellogro', criterio.indicador_id]" >
+              <a  class="btn btn-primary">Registrar Niveles</a>
+            </a>
+          </td>
+          <td>
+            <a (click)="deleteTipo(i.ID_TIPO_UNIDAD)">
+              <mat-icon color="primary">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </mat-icon>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

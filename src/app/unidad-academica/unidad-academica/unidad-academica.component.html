@@ -1,0 +1,92 @@
+<div class="container center">
+  <div class="ml-5 mt-2">
+    <form #tipoForm="ngForm" (ngSubmit)="addAcad(tipoForm); tipoForm.reset()">
+      <input
+        type="hidden"
+        name="ID_UNIDAD"
+        [(ngModel)]="Unidad_academica.selectedAcad.ID_UNIDAD"
+      />
+      <label for="inputState">Campus</label>
+      <select
+        (change)="changeCampus($event.target.value)"
+        id="inputState"
+        class="form-control"
+      >
+        <option selected>Elegir...</option>
+        <option
+          placeholder="CAMPUS"
+          *ngFor="let unidad of Unidad_academica.campus"
+        >
+          {{ unidad.NOMBRE }}
+        </option>
+      </select>
+      <label for="inputState">Facultad</label>
+      <input type="hidden" name="id_padre" [(ngModel)]="ID" />
+      <select
+        (change)="changeFacult($event.target.value)"
+        id="inputState"
+        class="form-control"
+      >
+        <option selected>Elegir...</option>
+        <option *ngFor="let alo of Unidad_academica.facultad" [value]="alo.ID">
+          {{ alo.FACULTADES }}
+        </option>
+      </select>
+
+      <input type="hidden" name="ID_TIPO_UNIDAD" />
+      <div class="row">
+        <div class="input-field col s10">
+          <label for="ng">CARRERA</label>
+          <input
+            type="text"
+            matInput
+            id="ng"
+            placeholder="Ingrese aquí"
+            name="nombre"
+            [(ngModel)]="Unidad_academica.selectedAcad.NOMBRE" class="form-control"
+          />
+          <br>
+          <button mat-raised-button color="primary" class="btn btn-primary upeu" >
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <table class="table tab mt-3">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">N°</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">FACULTAD</th>
+        <th scope="col">CAMPUS</th>
+        <th scope="col">ESTADO</th>
+        <th scope="col">OPCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of Unidad_academica.academica; let indice = index">
+        <td>{{ indice + 1 }}</td>
+        <td>{{ i.NOMBRE }}</td>
+        <td>{{ i.TIPO }}</td>
+        <td>{{ i.FACULTAD }}</td>
+        <td>{{ i.CAMPUS }}</td>
+        <td>{{ i.ESTADO }}</td>
+        <td>
+          <a (click)="editAcad(i)">
+            <mat-icon color="red">edit</mat-icon>
+          </a>
+        </td>
+        <td>
+          <a (click)="deleteTipo(i.ID_UNIDAD)">
+            <mat-icon color="primary">delete</mat-icon>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+</div>
